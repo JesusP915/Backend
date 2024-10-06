@@ -2,25 +2,17 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const fs = require('node:fs');
-// To read our request (body)
-const bodyParser = require('body-parser');
 
 // Middleware to parse JSON bodies
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Middleware to parse URL-encoded bodies
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
 
-//localhost:3000
 app.get('/', (req, res) => {
   res.send('Hello World!');
 
 })
-
-app.listen(port, () => {
-  console.log(`Example app listening on port ${port}`);
-})
-
 
 app.post('/contact-us', (req, res) => {
 
@@ -46,11 +38,14 @@ app.post('/contact-us', (req, res) => {
 function writeToFile(content) {
 
   try {
-
     fs.writeFileSync('./form.txt', content);
-    // file written successfully
   } catch (err) {
     console.error(err);
   }
 
 }
+
+app.listen(port, () => {
+  console.log(`Example app listening on port ${port}`);
+})
+
