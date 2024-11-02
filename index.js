@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 const port = 3000;
 const fs = require('node:fs');
+const cors = require('cors');
 
 // Middleware to parse JSON bodies
 app.use(express.json());
@@ -9,8 +10,13 @@ app.use(express.json());
 // Middleware to parse URL-encoded bodies
 app.use(express.urlencoded({ extended: true }));
 
+
+//Middleware to allow communication between front and backend
+app.use(cors());
+
+
 app.get('/', (req, res) => {
-  res.send('Hello World!');
+  res.json('Hello World!');
 
 })
 
