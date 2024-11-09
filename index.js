@@ -16,9 +16,21 @@ app.use(cors());
 
 
 app.get('/', (req, res) => {
-  res.json('Hello World!');
+  res.json('Good day!');
 
 })
+
+app.post('/fitness', (req , res) => {
+  console.log("What is the request", req.body);
+  let response = {
+    message: "success!",
+    firstName: req.body.firstName,
+    lastName: req.body.lastName,
+    contactNumber: req.body.contactNumber
+  }
+  res.json(response)
+})
+
 
 app.post('/contact-us', (req, res) => {
 
