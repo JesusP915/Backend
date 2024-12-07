@@ -28,6 +28,10 @@ app.post('/fitness', (req , res) => {
     lastName: req.body.lastName,
     contactNumber: req.body.contactNumber
   }
+
+  let contents = JSON.stringify(response)
+
+  writeToFile(contents)
   res.json(response)
 })
 
